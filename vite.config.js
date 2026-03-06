@@ -5,11 +5,8 @@ import { defineConfig } from 'vite'
 import tailwindcss from '@tailwindcss/vite'
 
 export default defineConfig({
-  base: "/ATA-Chef/",
+  base: "/",
   plugins: [
     tailwindcss(),react()
   ],
-  build: {
-    chunkSizeWarningLimit: 1000,
-  },
 })
