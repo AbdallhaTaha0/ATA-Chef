@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import ClaudeRecipe from "./ClaudeRecipe";
 import IngredientsList from "./IngredientsList";
 import { getRecipeFromMistral } from "../ai.js";
@@ -7,6 +7,8 @@ const Main = () => {
   const [ingredients, setIngredients] = useState([]);
   const [recipe, setRecipe] = useState("");
   const [loading, setLoading] = useState(false);
+  
+  
 
   const handleSubmit = (formData) => {
     const data = Object.fromEntries(formData);
@@ -14,6 +16,8 @@ const Main = () => {
       setIngredients([...ingredients, data.ingredient.trim()]);
     }
   };
+
+  
 
   async function getRecipeResponse() {
     setLoading(true);
@@ -94,7 +98,7 @@ const Main = () => {
         )}
 
         {!loading && recipe && (
-          <ClaudeRecipe recipe={recipe} ingredients={ingredients} />
+          <ClaudeRecipe  recipe={recipe} ingredients={ingredients} />
         )}
       </div>
     </main>
