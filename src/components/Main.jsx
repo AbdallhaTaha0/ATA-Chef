@@ -7,7 +7,7 @@ const Main = () => {
   const [ingredients, setIngredients] = useState([]);
   const [recipe, setRecipe] = useState("");
   const [loading, setLoading] = useState(false);
-  
+  const recipeRef = useRef(null);
   
 
   const handleSubmit = (formData) => {
@@ -17,6 +17,11 @@ const Main = () => {
     }
   };
 
+  useEffect(() => {
+    if (recipeRef.current && recipe) {
+      recipeRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [recipe]);
   
 
   async function getRecipeResponse() {
@@ -50,7 +55,7 @@ const Main = () => {
           <div className="bg-white rounded-3xl shadow-sm border border-slate-100 p-6 sm:p-8 mb-8">
             <IngredientsList ingredients={ingredients} />
             {ingredients.length > 3 && (
-              <div className="mt-8 flex flex-col sm:flex-row items-center justify-between p-6 sm:p-8 bg-gradient-to-br from-teal-50 to-blue-50 rounded-2xl border border-teal-100/50">
+              <div ref={recipeRef} className="mt-8 flex flex-col sm:flex-row items-center justify-between p-6 sm:p-8 bg-gradient-to-br from-teal-50 to-blue-50 rounded-2xl border border-teal-100/50">
                 <div className="flex flex-col mb-4 sm:mb-0 text-center sm:text-left">
                   <h3 className="text-xl font-semibold text-slate-800 mb-1">
                     Ready for a recipe?
@@ -65,7 +70,7 @@ const Main = () => {
                   className="w-full sm:w-auto bg-gradient-to-r from-teal-600 to-blue-600 hover:from-teal-500 hover:to-blue-500 text-white font-medium py-3 px-6 rounded-xl shadow-md hover:shadow-lg transition-all duration-200 focus:ring-2 focus:ring-offset-2 focus:ring-teal-500 cursor-pointer disabled:opacity-70 disabled:cursor-not-allowed"
                 >
                   {loading ? (
-                    <span className="flex items-center justify-center gap-2">
+                    <span  className="flex items-center justify-center gap-2">
                       <svg
                         className="animate-spin h-5 w-5 text-white"
                         xmlns="http://www.w3.org/2000/svg"
