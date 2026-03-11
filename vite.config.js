@@ -5,7 +5,7 @@ import { defineConfig } from 'vite'
 import tailwindcss from '@tailwindcss/vite'
 
 export default defineConfig({
-  base: "/",
+  base: "/ATA-Chef/",
   plugins: [
     tailwindcss(),react()
   ],
